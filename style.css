@@ -8,6 +8,7 @@ html, body {
     flex-direction: row;
     padding: 2rem;
     background-color: #14C38E;
+    margin-bottom: 2rem;
 }
 
 .page-header .site-name {
@@ -142,8 +143,12 @@ form {
 
 .movie-card:hover{
     cursor: pointer;
-    transform: scale(1.1);
+    transform: scale(1.01);
     transition: transform 0.2s ease-in-out 0s;
+}
+
+.movie-card header{
+    margin-top: 1rem;
 }
 
 .movie-card header span {
@@ -153,6 +158,11 @@ form {
     margin: 0;
 }
 
+.movie-card img{
+    max-width: 20rem;
+    border-radius: 5px;
+}
+
 .movie-type {
     font-family: 'Arbutus Slab', sans-serif;
     color: #c4c0c0;
@@ -160,7 +170,7 @@ form {
 }
 
 .movie-card-body {
-    font-size: .8rem;
+    font-size: 1.1rem;
 }
 
 .subtitle {
@@ -293,4 +303,38 @@ select{
 .new-movie{
     display: flex;
     flex-direction: column;
+}
+
+.video-container{
+    display: flex;
+    margin-top: 2rem;
+}
+
+.video-player{
+    width: 50%;
+    margin: auto;
+}
+
+.video-header{
+    display: flex;
+    flex-direction: row;
+    width: 50%;
+    margin: auto;
+}
+
+.movie-header{
+    font-family: 'Arbutus Slab', sans-serif;
+    text-transform: uppercase;
+    color: #646FD4;
+    margin-right: auto;
+}
+
+.video-header a{
+    text-decoration: none;
+    margin-left: auto;
+    margin-bottom: auto;
+}
+
+.invisible{
+    display: none;
 }

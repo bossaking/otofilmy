@@ -6,11 +6,12 @@ if(isset($_POST['title'])){
 
     $title = $_POST['title'];
     $description = $_POST['description'];
-    $image = $_POST['image'];
-    $video = $_POST['video'];
+
+    $imageFileName = uploadImage($_FILES);
+    $videoFileName = uploadVideo($_FILES);
 
     $conn = OpenConnection();
-    $newMovie = "INSERT INTO Movie (title, description, image, video) VALUES ('$title', '$description', '$image', '$video')";
+    $newMovie = "INSERT INTO Movie (title, description, image, video) VALUES ('$title', '$description', '$imageFileName', '$videoFileName')";
 
     $conn->query($newMovie);
 
@@ -18,12 +19,30 @@ if(isset($_POST['title'])){
 
 }
 
+function uploadImage($files){
+    $timestamp = time();
+    $fileName = $timestamp . "_" . basename($files["image"]["name"]);
+    $fileName = str_replace("'", "", $fileName);
+        $targetFile = "images/" . $fileName;
+    move_uploaded_file($files["image"]["tmp_name"], $targetFile);
+    return $fileName;
+}
+
+function uploadVideo($files){
+    $timestamp = time();
+    $fileName = $timestamp . "_" . basename($files["video"]["name"]);
+    $fileName = str_replace("'", "", $fileName);
+    $targetFile = "videos/" . $fileName;
+    move_uploaded_file($files["video"]["tmp_name"], $targetFile);
+    return $fileName;
+}
+
 ?>
 
 <script src="js/new_movie.js"></script>
 
 <div class="new-movie">
-    <form method="post">
+    <form method="post" enctype="multipart/form-data">
         <div class="form-field">
             <label for="title">Nazwa filmu</label>
             <input type="text" name="title" required id="title">
